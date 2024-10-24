@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithRedirect, SigninWithPopup, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { 
+  getAuth, 
+  signInWithRedirect , 
+  GoogleAuthProvider, 
+  signInWithPopup,
+  createUserWithEmailAndPassword
+} from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -31,6 +37,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   const userDocRef = doc(db, 'users', userAuth.uid);
   const userSnapshot = await getDoc(userDocRef)
 
+  if (!userAuth) return; 
+
   // if user data doesn't exist
   // create / set the document with data from userAuth in my collection
   if (!userDocRef.exists()) {
@@ -48,5 +56,11 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   }
   
   return userDocRef;
+}
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  
+  return await createUserWithEmailAndPassword(auth, email, password)
 }
 
