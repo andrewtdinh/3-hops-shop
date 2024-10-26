@@ -4,7 +4,7 @@ import { auth, signInWithGooglePopUp, signInWithGoogleRedirect, createUserDocume
 
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 
-const SignIn = () => {
+const Authentication = () => {
   useEffect(() => {
     async function fetchResult() {
       const response = await getRedirectResult(auth);
@@ -14,7 +14,7 @@ const SignIn = () => {
       }
     }
 
-    fetchResult();
+    fetchResult()
   }, [])
 
   const logGoogleUser = async () => {
@@ -37,4 +37,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn;
+export default Authentication;
