@@ -13,7 +13,11 @@ export const UserProvider = ( { children }) => {
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
-    onAuthStateChangedListener()
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      setCurrentUser(user)
+    })
+
+    return unsubscribe;
   }, [])
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>
