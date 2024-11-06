@@ -5,7 +5,6 @@ import Button from '../button/button.component';
 
 import {
   signInWithGooglePopUp,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
@@ -25,8 +24,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopUp();
-    await createUserDocumentFromAuth(user)
+    await signInWithGooglePopUp();
   }
 
   const handleSubmit = async (event) => {
@@ -39,7 +37,7 @@ const SignInForm = () => {
     }
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(email, password);
+      await signInAuthUserWithEmailAndPassword(email, password);
 
       resetFormFields();
     } catch (error) {
