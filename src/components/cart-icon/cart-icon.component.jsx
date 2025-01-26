@@ -7,7 +7,6 @@ import "./cart-icon.styles.scss";
 
 const CartIcon = () => {
   const { setIsCartOpen, isCartOpen, cartCount } = useContext(CartContext);
-  // const totalCartItems = (cartItems.reduce((totalItems, cartItem) => totalItems + cartItem.quantity, 0));
   
   const toggleIsCartOpen = (e) => {
     e.preventDefault();
