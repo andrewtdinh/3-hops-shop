@@ -25,8 +25,8 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
         ? { ...cartItem, quantity: cartItem.quantity - 1 }
         : cartItem
     );
-  } else if (existingCartItem && existingCartItem.quantity == 1) {
-    return cartItems.filter((cartItem) => cartItem.id != existingCartItem.id);
+  } else if (existingCartItem && existingCartItem.quantity === 1) {
+    return cartItems.filter((cartItem) => cartItem.id !== existingCartItem.id);
   }
 };
 
