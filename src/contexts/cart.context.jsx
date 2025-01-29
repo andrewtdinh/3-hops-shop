@@ -19,15 +19,17 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
     (cartItem) => cartItem.id === cartItemToRemove.id
   );
 
-  if (existingCartItem && existingCartItem.quantity > 1) {
-    return cartItems.map((cartItem) => 
-      cartItem.id === cartItemToRemove.id 
-        ? { ...cartItem, quantity: cartItem.quantity - 1 }
-        : cartItem
-    );
-  } else if (existingCartItem && existingCartItem.quantity === 1) {
+  // If the quantity is 1
+  if (existingCartItem?.quantity === 1) {
     return cartItems.filter((cartItem) => cartItem.id !== existingCartItem.id);
   }
+
+  // If the quantity is > 1
+  return cartItems.map((cartItem) =>
+    cartItem.id === cartItemToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  );
 };
 
 export const CartContext = createContext({
