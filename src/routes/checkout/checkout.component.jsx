@@ -4,6 +4,8 @@ import { CartContext } from "../../contexts/cart.context";
 
 import "./checkout.styles.scss";
 
+import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+
 const Checkout = () => {
   const { cartItems, addItemToCart, removeItemFromCart } =
     useContext(CartContext);
@@ -27,24 +29,9 @@ const Checkout = () => {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map((cartItem) => {
-        if (cartItem) {
-          const { id, name, quantity } = cartItem;
-          return (
-            <div key={id}>
-              <h2>{name}</h2>
-              <span>{quantity}</span>
-              <span onClick={() => removeItemFromCart(cartItem)}>
-                {" "}
-                decrement{" "}
-              </span>
-              <span onClick={() => addItemToCart(cartItem)}> increment </span>
-            </div>
-          );
-        } else {
-          return undefined;
-        }
-      })}
+      {cartItems.map((cartItem) => (
+        <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
+      ))}
       <span className="Total">Total: 0</span>
     </div>
   );
